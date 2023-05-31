@@ -1,9 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const PhotoDetail = () => {
-  // {thumbnailUrl, title, id}
+  
+
+  const navigate = useNavigate();
+
+  const onNavigateBack = () =>{
+    navigate(-1);
+}
+  
 const{id} = useParams();
 
 const[data, setData ] = useState([]);
@@ -26,7 +33,7 @@ const obtenerDatos = async () =>{
   return (
     <div>
 
-<h1>Hola</h1>
+<h1 class="display-1" >Información</h1>
 
 
 <div className="col animate__animated animate__fadeIn">
@@ -36,19 +43,24 @@ const obtenerDatos = async () =>{
                  <div className="col-4">
                     <img src={ data.thumbnailUrl } className="card-img" />
                  </div> 
-
+                 
                  <div className="col-8">
                     
                     <div className="card-body">
 
-                        <h5 className="card-title">Id: { data.id }</h5>
-                        <p className="card-text">Title: {data.title} </p>
-                        
-                        <p className="card-text">
+                        <h2 className="text-muted">Id: { data.id }</h2>
+                        <br />
+                        <h2 className="text-muted">Title: {data.title} </h2>
+                        <br />
+                        <h2 className="text-muted">
                             <small className="text-muted"> URL: {data.url} </small>
-                        </p>
-
-                      
+                        </h2>
+                        <br />
+                      <button 
+                      className='btn btn-primary'
+                      onClick={onNavigateBack}
+                      >
+                        Regresar</button>
                             
                           
                     </div>
